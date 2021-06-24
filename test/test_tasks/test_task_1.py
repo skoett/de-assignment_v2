@@ -40,3 +40,11 @@ def test_configuration_contains_task_1(get_configuration) -> None:
     assert isinstance(get_configuration.task1.get("download_method"), str), "'download_method' is not of type string"
     assert "use_api" in get_configuration.task1, "'use_api' is missing from configuration file in task 1"
     assert isinstance(get_configuration.task1.get("use_api"), bool), "'use_api' is not of type bool"
+
+
+def test_batch_tree_contains_batches(get_cached_batch_tree) -> None:
+    keys = list(get_cached_batch_tree.keys())
+    batches = list(map(lambda x: x.split('_')[0], keys))
+    numbers = list(map(lambda x: x.split('_')[1], keys))
+    assert all(number.isdigit() for number in numbers)
+    assert all(batch == "batch" for batch in batches)
