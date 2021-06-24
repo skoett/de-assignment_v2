@@ -1,0 +1,30 @@
+task1:
+  url: https://github.com/lunarway/de-assignment/tree/master/data
+  repo_url: https://github.com/lunarway/de-assignment/tree/master/
+  sink: lake/bronze/
+  user: lunarway
+  repo: de-assignment
+  batch_size: 500
+  file_size: 104857600 # 100MB
+  save_tree: False
+  use_cached: False
+  file_path: /artefacts/tree.pkl
+  download_method: parallel
+  use_api: False
+task2:
+  source: data/
+  #source: lake/bronze/data/
+  sink: lake/silver/task_2/
+task3:
+  git_path: data/
+  source: lake/silver/task_2/
+  sink: lake/silver/task_3/
+task4:
+  source: lake/silver/task_3/
+  sink: lake/silver/task_4/
+task5:
+  source: lake/silver/task_4/
+  sink: lake/silver/task_5/
+task6:
+  source: lake/silver/task_5/
+  sink: lake/gold/
