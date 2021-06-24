@@ -3,8 +3,11 @@
 Utility functions for the various tasks
 """
 import time
-from typing import Callable, Any
+import yaml
+from types import SimpleNamespace
 from pathlib import Path
+from typing import Callable, Any
+
 
 
 def get_project_root() -> str:
@@ -24,3 +27,9 @@ def time_execution(func: Callable) -> Callable:
         print(f"Execution of '{func.__name__}' took: {round(time.time() - start, 2)} seconds")
         return val
     return wrapper
+
+
+def setup_config(config_path) -> SimpleNamespace:
+    with open(config_path) as stream:
+        config_file = yaml.safe_load(stream)
+    return SimpleNamespace(**config_file)

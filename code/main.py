@@ -10,20 +10,11 @@ from code.task_2 import task2
 from code.task_3 import task3
 from code.task_4 import task4
 from code.task_5 import task5
-
-from types import SimpleNamespace
-import yaml
-
 from code.task_6 import task6
-from code.utils.utils import time_execution
 
-CONFIG_PATH = "../config/config.yaml"
+from code.utils.utils import time_execution, setup_config
 
-
-def setup_config() -> SimpleNamespace:
-    with open(CONFIG_PATH) as stream:
-        config_file = yaml.safe_load(stream)
-    return SimpleNamespace(**config_file)
+CONFIG_PATH = "../../config/config.yaml"
 
 
 @time_execution
@@ -32,7 +23,7 @@ def main() -> None:
     Main loop
     :return: None
     """
-    config = setup_config()
+    config = setup_config(CONFIG_PATH)
     # Task 1 - Download files from Github in batches of a certain size.
     # task1(config.task1)
 
