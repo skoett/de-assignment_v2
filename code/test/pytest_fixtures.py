@@ -13,17 +13,17 @@ from typing import List, Union, Tuple, Callable, Dict
 
 from code.utils.utils import setup_config, get_project_root
 
-CONFIG_PATH = "../../config/config.yaml"
+CONFIG_PATH = "/config/config.yaml"
 
 
 @pytest.fixture
 def get_configuration() -> SimpleNamespace:
-    return setup_config(CONFIG_PATH)
+    return setup_config(get_project_root() + CONFIG_PATH)
 
 
 @pytest.fixture
 def get_cached_batch_tree(get_configuration) -> Dict[str, str]:
-    with open(get_project_root() + get_configuration.task1.get("file_path"), 'rb') as fh:
+    with open(get_project_root() + get_configuration.ingestion.get("file_path"), 'rb') as fh:
         batches = pickle.load(fh)
     assert isinstance(batches, Dict), "Cached batch tree is not a dictionary"
     return batches
