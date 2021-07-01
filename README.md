@@ -16,7 +16,7 @@ The generated data files needed for the assignment is located in the [data folde
 ## Input
 You are given input files with the naming convention : `<craft>_<planet>_<date>_<time>.csv` :
 
-`<craft>` : [`rocket`, `lander`] <br>
+`<craft>`: [`rocket`, `lander`] <br>
 `<planet>` : [`venus`, `saturn`] <br>
 `<date>_<time>` has the following format : `yyyyMMdd_HHmmss`
 
@@ -33,23 +33,27 @@ There is four different file formats :
 |                    |                     | crew (Integer)     |                  |
 
 ## Tasks
-1. Download files from Github in batches of a certain size.
-2. Extract the `<date>_<time>` componanats from each file name, and convert that to a timestamp. Add teh timestamp as a column called `timestamp` in the given file in the format `yyy-MM-dd HH:mm:ss`
-3. Parse the `id` column's middle value (for `bf8d460f-943c-4084-835c-a03dde141041` this is `4084`), and use that as an id in the newly generated file.
-4. Convert all columnnames to lowercase
-5. From the `size` column :
+1. Data ingestion:
+ - Download files from GitHub in batches of a certain size.
+2. Data transformation:
+ - Extract the `<date>_<time>` components from each file name, and convert that to a timestamp. Add the timestamp as a column called `timestamp` in the given file in the format `yyy-MM-dd HH:mm:ss`
+ - Parse the `id` column's middle value (for `bf8d460f-943c-4084-835c-a03dde141041` this is `4084`), and use that as an id in the newly generated file.
+ - Convert all column names to lowercase
+ - From the `size` column :
     - filter out all non-integer values and create a new column called `size` of type Integer
-    - based on the value of the newly created integer-based `size` column, create a new column called `magnitude` that is of the type String. Populate the `magnitude` column by mapping the `size` values to thier respective range according to the following scheme :
+    - based on the value of the newly created integer-based `size` column, create a new column called `magnitude` that is of the type String. Populate the `magnitude` column by mapping the `size` values to their respective range according to the following scheme:
         - `massive` : 500 <= x < 1000
         - `big` : 100 <= x < 500
         - `medium` : 50 <= x < 100
         - `small` : 10 <= x < 50
         - `tiny` : 1 <= x < 10
     - drop the original `size` column
-6. Output a single csv file per craft per planet (ex. `rocket_venus.csv`)
+ - Output a single csv file per craft per planet (ex. `rocket_venus.csv`)
+3. Testing:
+ - Write test cases that proves the correctness of your solution.
 
 ## Delivery
-Please provide your solution in the form of a link to a Github repository hosting your source code.
+Please provide your solution in the form of a link to a GitHub repository hosting your source code.
 
 ## General Remarks
 As much as this is a coding exercise, your goal is to show not only _what_ your work looks like but also how you work. Hence, a successful delivery doesn't only focus on the code written.
