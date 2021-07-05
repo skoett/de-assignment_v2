@@ -36,7 +36,7 @@ There is four different file formats :
 1. Data ingestion:
  - Download files from GitHub in batches of a certain size.
 2. Data transformation:
- - Extract the `<date>_<time>` components from each file name, and convert that to a timestamp. Add the timestamp as a column called `timestamp` in the given file in the format `yyy-MM-dd HH:mm:ss`
+ - Extract the `<date>_<time>` components from each file name, and convert that to a timestamp. Add the timestamp as a column called `timestamp` in the given file in the format `yyyy-MM-dd HH:mm:ss`
  - Parse the `id` column's middle value (for `bf8d460f-943c-4084-835c-a03dde141041` this is `4084`), and use that as an id in the newly generated file.
  - Convert all column names to lowercase
  - From the `size` column :

@@ -1,0 +1,14 @@
+A list of good test cases for the assignment:
+
+Ingestion:
+- Test whether the parallel download method is faster than the singular method for batch download.
+- Test that each batch download method actually downloads the data in correct batches.
+- Test that all files are downloaded correctly by comparing the downloaded files (size, name, data etc.) towards files
+  and the archived batch tree.
+- Test whether an increase in threads will increase the download speed for parallel download method.
+
+Transformation:
+- Test whether files are merged correctly:
+    - Test whether two files are appended correctly wrt. rows and columns.
+    - Test all requirements to columns and data in the merged file.
+- Test further for single utility functions.

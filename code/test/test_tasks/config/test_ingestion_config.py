@@ -4,6 +4,7 @@
 This file includes test scenarios and test cases for code regarding ingestion.
 Pytest is the preferred test framework.
 """
+
 from code.test.utils.utils import (assert_object_in_yaml,
                                    assert_object_is_correct_type)
 
@@ -34,6 +35,42 @@ def test_configuration_contains_ingestion(get_configuration) -> None:
     for object_name, type_def in configuration_objects:
         assert_object_in_yaml(object_name, get_configuration.ingestion, "ingest")
         assert_object_is_correct_type(object_name, get_configuration.ingestion, type_def)
+
+
+def test_configuration_fails_on_wrong_object_name(get_configuration) -> None:
+    """
+    Tests whether the configuration contains an entry for task 1.
+    :param get_configuration: The configuration yaml file.
+    :return: None
+    """
+
+    assert get_configuration.ingestion is not None, "'task1 is not in configuration file"
+    configuration_objects.append(("not_an_object", str))
+    try:
+        for object_name, type_def in configuration_objects:
+            assert_object_in_yaml(object_name, get_configuration.ingestion, "ingest")
+            assert_object_is_correct_type(object_name, get_configuration.ingestion, type_def)
+    except AssertionError:
+        return
+    raise AssertionError("Test failed")
+
+
+def test_configuration_fails_on_wrong_object_type(get_configuration) -> None:
+    """
+    Tests whether the configuration contains an entry for task 1.
+    :param get_configuration: The configuration yaml file.
+    :return: None
+    """
+
+    assert get_configuration.ingestion is not None, "'task1 is not in configuration file"
+    configuration_objects[-1] = ("use_api", str)
+    try:
+        for object_name, type_def in configuration_objects:
+            assert_object_in_yaml(object_name, get_configuration.ingestion, "ingest")
+            assert_object_is_correct_type(object_name, get_configuration.ingestion, type_def)
+    except AssertionError:
+        return
+    raise AssertionError("Test failed")
 
 
 def test_batch_tree_contains_batches(get_cached_batch_tree) -> None:
