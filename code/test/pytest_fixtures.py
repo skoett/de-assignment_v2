@@ -26,7 +26,7 @@ def get_configuration() -> SimpleNamespace:
 
 
 @pytest.fixture
-def get_cached_batch_tree(get_configuration) -> Dict[str, str]:
+def get_cached_batch_tree(get_configuration) -> Dict[str, Dict]:
     """
     Loads in the cached batch tree from Artefacts.
     :param get_configuration: The get_configuration file object.
