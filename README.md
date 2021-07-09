@@ -12,6 +12,7 @@ Your goal is to perform a series of ETL steps that demonstrate your ability to w
 
 ## Access
 The generated data files needed for the assignment is located in the public storage bucket: <https://storage.googleapis.com/de-assignment-data-bucket/data/>.
+
 To access the storage bucket, we recommend [gsutil](https://cloud.google.com/storage/docs/gsutil) to navigate in storage buckets on Google Cloud Platform.
 Alternatively, you can curl the storage bucket to acquire the tree structure and URI's using:
 ```
