@@ -3,6 +3,7 @@ ingestion:
   repo_url: https://github.com/lunarway/de-assignment/tree/master/
   path: data/
   sink: lake/bronze/
+  source: de-assignment-data-bucket
   user: lunarway
   repo: de-assignment
   batch_size: 500

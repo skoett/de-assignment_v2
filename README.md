@@ -25,6 +25,8 @@ wget https://storage.googleapis.com/de-assignment-data-bucket/data/<FILE>
 
 Note, that most programming languages have libraries to interact with GCP. E.g. the python library can be found [here](https://github.com/googleapis/google-cloud-python#google-cloud-python-client).
 
+Hint: Since you will call the bucket without a GCP project, you would like to use an [anonymous client](https://googleapis.dev/python/storage/latest/client.html#google.cloud.storage.client.Client.create_anonymous_client).
+
 ## Input
 You are given input files with the naming convention : `<craft>_<planet>_<date>_<time>.csv` :
 

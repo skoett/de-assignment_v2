@@ -5,7 +5,7 @@ This module contains the main loop for execution the solution to Lunar's Data En
 The assignment involves the small-files problem in a space setting.
 """
 
-from code.ingest.ingestion import data_ingestion
+from code.ingest.gcp_ingestion import data_ingestion
 from code.transform.transformation import transform_data
 from code.utils.utils import time_execution, setup_config
 
