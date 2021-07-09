@@ -18,6 +18,11 @@ Alternatively, you can curl the storage bucket to acquire the tree structure and
 ```
 curl -X GET "https://storage.googleapis.com/storage/v1/b/de-assignment-data-bucket/o"
 ```
+Files can then be downloaded by using wget. I.e:
+```
+wget https://storage.googleapis.com/de-assignment-data-bucket/data/<FILE>
+```
+
 Note, that most programming languages have libraries to interact with GCP. E.g. the python library can be found [here](https://github.com/googleapis/google-cloud-python#google-cloud-python-client).
 
 ## Input
