@@ -3,15 +3,21 @@
 ## Introduction
 When interviewing a data-minded candidate and potential future colleague of ours, we believe that an interview based on a handed-out task is often more open, more relevant and more interesting for both parties.
 
-It is important to emphasize that the task at hand should not be interpreted as having a right or wrong answer, but merely acts as a basis for a discussion and a way for us to get a glimpse of how you as a candidate choose to go about it. It is not a requirement to implement all parts of the specified tasks - use it as a guidance and implement the solution the way you feel is right.
+It is important to emphasize that the task at hand should not be interpreted as having a right or wrong answer, but merely acts as a basis for a discussion, and a way for us to get a glimpse of how you as a candidate choose to go about it. It is not a requirement to implement all parts of the specified tasks - use it as a guidance and implement the solution the way you feel is right.
 
 ## The Objective
-The assignment focuses on solving a variant of the small files problem. 
-You are given access to a S3 bucket with many small csv files that have various data structures in them. 
+The assignment focuses on solving a variant of the small-files problem. 
+You are given access to a GCP bucket with many small .csv files that have various data structures in them. 
 Your goal is to perform a series of ETL steps that demonstrate your ability to work with simple data. It would be preferred if you use Python for you solution, but you can use whatever language you decide for :) You can use Scala, Python or R to solve the problem.
 
 ## Access
-The generated data files needed for the assignment is located in the [data folder](https://github.com/lunarway/de-assignment/tree/initial_datafiles_readme/data) of this repos
+The generated data files needed for the assignment is located in the public <https://storage.googleapis.com/de-assignment-data-bucket/data/>.
+To access the storage bucket, we recommend [gsutil](https://cloud.google.com/storage/docs/gsutil) to navigate in storage buckets on Google Cloud Platform.
+Alternatively, you can curl the storage bucket to acquire the tree structure and URI's using:
+```
+curl -X GET "https://storage.googleapis.com/storage/v1/b/de-assignment-data-bucket/o"
+```
+Note, that most programming languages have libraries to interact with GCP. E.g. the python library can be found [here](https://github.com/googleapis/google-cloud-python#google-cloud-python-client).
 
 ## Input
 You are given input files with the naming convention : `<craft>_<planet>_<date>_<time>.csv` :
@@ -33,9 +39,9 @@ There is four different file formats :
 |                    |                     | crew (Integer)     |                  |
 
 ## Tasks
-1. Data ingestion:
- - Download files from GitHub in batches of a certain size.
-2. Data transformation:
+1. ##### Data ingestion:
+ - Download files from the GCP bucket in batches of a certain size.
+2. ##### Data transformation:
  - Extract the `<date>_<time>` components from each file name, and convert that to a timestamp. Add the timestamp as a column called `timestamp` in the given file in the format `yyyy-MM-dd HH:mm:ss`
  - Parse the `id` column's middle value (for `bf8d460f-943c-4084-835c-a03dde141041` this is `4084`), and use that as an id in the newly generated file.
  - Convert all column names to lowercase
@@ -49,7 +55,7 @@ There is four different file formats :
         - `tiny` : 1 <= x < 10
     - drop the original `size` column
  - Output a single csv file per craft per planet (ex. `rocket_venus.csv`)
-3. Testing:
+3. ##### Testing:
  - Write test cases that proves the correctness of your solution.
 
 ## Delivery
@@ -59,10 +65,10 @@ Please provide your solution in the form of a link to a GitHub repository hostin
 As much as this is a coding exercise, your goal is to show not only _what_ your work looks like but also how you work. Hence, a successful delivery doesn't only focus on the code written.
 
 Other aspects, we deem quite important, are:
-- strong commit history
-- modular design
-- unit tests
-- documentation
+- Strong commit history
+- Modular design
+- Testing (unit testing, integration testing etc.)
+- Documentation
 
 If you get stuck or don't understand something, please reflect that in the documentation and move on.
 Any assumptions or considerations that you are making need to be stated.

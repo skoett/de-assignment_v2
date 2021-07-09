@@ -28,9 +28,17 @@ def test_download_single_file(get_cached_batch_tree) -> None:
     file_1 = {"batch_1": batch_1.get('file_1')}
     tmp_dir = "code/test/temp_files/"
     directory = glob.glob(get_project_root() + "/" + tmp_dir + "data/*.csv")
+    # Assert that the temp dir is empty
     assert len(directory) == 0
     get_files(destination=tmp_dir, batches=file_1)
     directory = glob.glob(get_project_root() + "/" + tmp_dir + "data/*.csv")
+    # Assert that one file exists in the directory
     assert len(directory) == 1
+    for _, v in file_1.items():
+        print(v)
+        # Assert that the size of the file is equivalent
+        v['size']
+        # Assert that the name of the file is equivalent
+        assert v['path'] == '/'.join(directory[0].split('/')[-2:])
     for file in directory:
         os.remove(file)
